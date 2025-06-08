@@ -6,7 +6,7 @@ import {ERC20} from "lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol"
 /**
  * @title lAIcy
  * @dev The last web3 bot you'll ever need
- * `* @dev Supporting interfaces: API, Telegram, SMS, Dapp, and much more to come
+ * @dev Bot interfaces supported: API, Telegram, SMS, Dapp, and much more to come
  * @dev https://laicy.xyz
  */
 contract Laicy is ERC20 {
