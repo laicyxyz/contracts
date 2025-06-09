@@ -14,12 +14,12 @@ contract LaicyTest is Test {
     }
 
     function testTokenDetails() public view {
-        assertEq(laicy.name(), "Laicy");
-        assertEq(laicy.symbol(), "LAI");
+        assertEq(laicy.name(), "lAIcy");
+        assertEq(laicy.symbol(), "lAIcy");
         assertEq(laicy.decimals(), 18);
 
-        // Check that 100 million tokens were minted to the deployer
-        uint256 expectedSupply = 100_000_000 * 10 ** 18;
+        // Check that 1 billion tokens were minted to the deployer
+        uint256 expectedSupply = 1_000_000_000 * 10 ** 18;
         assertEq(laicy.totalSupply(), expectedSupply);
         assertEq(laicy.balanceOf(deployer), expectedSupply);
     }

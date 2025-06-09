@@ -59,6 +59,11 @@ contract LaicyDeployer {
         laicyToken = address(new Laicy());
         emit LaicyDeployed(laicyToken);
 
+        // The Laicy constructor mints all tokens to msg.sender (which is this contract during construction)
+        // Verify tokens were minted to this contract
+        uint256 totalSupply = IERC20(laicyToken).balanceOf(address(this));
+        require(totalSupply > 0, "No tokens minted");
+
         uint256 initPrice = 25_000_000; // lAIcy per WETH
         address token0 = weth;
         address token1 = laicyToken;
@@ -101,12 +106,12 @@ contract LaicyDeployer {
             // Price moves up when lAIcy becomes more expensive relative to WETH
             // Set range from current tick to maximum to hold all lAIcy
             tickLower = currentTick;
-            tickUpper = 887220; // Maximum tick
+            tickUpper = TickMath.MAX_TICK;
         } else {
             // lAIcy is token1, so we want all lAIcy tokens
             // Price moves down when lAIcy becomes more expensive relative to WETH
             // Set range from minimum to current tick to hold all lAIcy
-            tickLower = -887220; // Minimum tick
+            tickLower = TickMath.MIN_TICK;
             tickUpper = currentTick;
         }
 
